@@ -10,7 +10,7 @@ inputBanyakPemain :-
     read(Input),
 
     (
-        (Input < 2; Input > 4) -> write('Mohon massukan angka antara 2-4'),nl,
+        (Input < 2; Input > 4) -> write('Mohon masukkan angka antara 2 - 4.'),nl,
         fail;
         (Input >= 2, Input =< 4) -> assertz(jumlah_pemain(Input)), !
     ),
@@ -24,13 +24,18 @@ testAssertz :-
 putNamaPemain :-
     repeat,
     nama_pemain(Players),
-    write('Masukkan nama pemain: '),
+    length(Players, L)
+    write('Masukkan nama pemain '), write(L+1) , write(': '),
     read(Input),
     jumlah_pemain(Num),
     (
-        get_index(Players, Input, _)->write('Pemain sudah ada, masukkan nama lain.'), nl, fail;
+        (   
+            repeat,
+            isInList(Input, Players)->write('Nama sudah digunakan. Masukkan nama lain: '), read(Input), fail;
+            !,
+        )
         append(Players, [Input], X1), retractall(nama_pemain(Players)), assertz(nama_pemain(X1)),
-        (length(X1, L), L =:= Num)->!
+        (length(X1, L1), L1 =:= Num)->!
     ).
 
 
