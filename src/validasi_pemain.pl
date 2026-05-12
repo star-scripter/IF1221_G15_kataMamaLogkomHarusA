@@ -22,22 +22,24 @@ testAssertz :-
     write('JUMLAH PEMAIN: '), write(X).
 
 putNamaPemain :-
+    jumlah_pemain(Num), 
     repeat,
     nama_pemain(Players),
-    length(Players, L)
-    write('Masukkan nama pemain '), write(L+1) , write(': '),
-    read(Input),
-    jumlah_pemain(Num),
+    length(Players, L),
     (
-        (   
-            repeat,
-            isInList(Input, Players)->write('Nama sudah digunakan. Masukkan nama lain: '), read(Input), fail;
-            !,
-        )
-        append(Players, [Input], X1), retractall(nama_pemain(Players)), assertz(nama_pemain(X1)),
-        (length(X1, L1), L1 =:= Num)->!
+        (L=:=Num) -> !;
+        write('Masukkan nama pemain '), Cur is L+1, write(Cur) , write(': '),
+        read(Input),
+        misInput(Input, Name, Players),
+        fail
     ).
 
+simpan(Input):-
+    nama_pemain(Players),
+    append(Players, [Input], X1), retractall(nama_pemain(_)), assertz(nama_pemain(X1)).
 
-
-
+misInput(Input, Name, Players):-
+    (
+        isInList(Input, Players)-> write('Nama sudah digunakan. Masukkan nama lain: '), read(Name), misInput(Name, _, Players), !;
+        simpan(Input)
+    ).
