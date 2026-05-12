@@ -16,9 +16,14 @@ start_game :-
     assertz(game_start),
 
     % input jumlah pemain dan nama pemain
-    inputBanyakPemain,
-    putNamaPemain,
+    inputBanyakPemain, nl,
+    putNamaPemain, nl,
     nama_pemain(Players),
+
+    % acak urutan pemain
+    shuffle_urutan,
+    urutan_pemain(Order),
+    print_urutan,
 
     % generate deck yg teracak
     deck_generate(DeckAwal),
@@ -36,7 +41,7 @@ start_game :-
     assertz(deck_utama(SisaDeckSetelahBuang)),
     
     nl, write('Game dimulai! 7 kartu telah dibagikan.'), nl,
-    write('Kartu di tengah saat ini: '), write(KartuAwal), nl.
+    nl, write('Kartu di tengah saat ini: '), write(KartuAwal), nl.
 
 % helper predicate untuk bagi kartu ke pemain
 bagi_kartu(0, Deck, Deck, []).
