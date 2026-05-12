@@ -2,6 +2,7 @@
 :- dynamic(deck_utama/1).
 :- dynamic(tangan/2).
 :- dynamic(buang_kartu/1).
+:- dynamic(turn/1).
 
 
 :- include('kartu.pl').
@@ -17,10 +18,16 @@ start_game :-
     assertz(game_start),
 
     % input jumlah pemain dan nama pemain
-    inputBanyakPemain,
-    putNamaPemain,
+    inputBanyakPemain, nl,
+    putNamaPemain, nl,
     shuffle_urutan,
     nama_pemain(Players),
+
+    % acak urutan pemain
+    shuffle_urutan,
+    urutan_pemain(Order),
+    assertz(turn(0)),
+    print_urutan,
 
     % generate deck yg teracak
     deck_generate(DeckAwal),
@@ -38,8 +45,9 @@ start_game :-
     assertz(deck_utama(SisaDeckSetelahBuang)),
     
     nl, write('Game dimulai! 7 kartu telah dibagikan.'), nl,
-    write('Kartu di tengah saat ini: '), write(KartuAwal), nl.
-    
+    nl, write('Kartu di tengah saat ini: '), write(KartuAwal), nl,
+    print_giliran.
+
 % helper predicate untuk bagi kartu ke pemain
 bagi_kartu(0, Deck, Deck, []).
 bagi_kartu(N, [Kartu|SisaDeckTemp], SisaDeck, [Kartu|TanganPemain]) :-
@@ -58,3 +66,6 @@ bagi_ke_semua_pemain([Pemain|SisaPemain], Deck, SisaDeck) :-
     assertz(tangan(Pemain, TanganPemain)),
     bagi_ke_semua_pemain(SisaPemain, SisaDeckTemp, SisaDeck).
 
+print_giliran:-
+    turn(X), urutan_pemain(Z), get_element(Z, X, Y),
+    write('Giliran '), write(Y), write('.'), nl.

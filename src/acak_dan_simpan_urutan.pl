@@ -27,7 +27,13 @@ shuffle_urutan:-
 
 print_urutan :-
     urutan_pemain(Pemain),
-    write('Urutan Pemain: '), write(Pemain).    
+    write('Urutan Pemain: '), 
+    print_urutan(Pemain).
+print_urutan([H]):-
+    write(H), write('.'), nl.
+print_urutan([H|T]):-
+    write(H), write(' - '),
+    print_urutan(T).
 
 /*
 shuffle_test:-
