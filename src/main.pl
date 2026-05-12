@@ -3,12 +3,13 @@
 :- dynamic(tangan/2).
 :- dynamic(buang_kartu/1).
 
+
 :- include('kartu.pl').
 :- include('validasi_pemain.pl').
 :- include('aksi_pendukung.pl').
 :- include('acak_dan_simpan_urutan.pl').
 :- include('testing.pl').
-
+:- include('mainkanKartu').
 /* Ini buat testing aja, ganti aja pas mau full */
 start_game :-
 
@@ -18,6 +19,7 @@ start_game :-
     % input jumlah pemain dan nama pemain
     inputBanyakPemain,
     putNamaPemain,
+    shuffle_urutan,
     nama_pemain(Players),
 
     % generate deck yg teracak
@@ -37,7 +39,7 @@ start_game :-
     
     nl, write('Game dimulai! 7 kartu telah dibagikan.'), nl,
     write('Kartu di tengah saat ini: '), write(KartuAwal), nl.
-
+    
 % helper predicate untuk bagi kartu ke pemain
 bagi_kartu(0, Deck, Deck, []).
 bagi_kartu(N, [Kartu|SisaDeckTemp], SisaDeck, [Kartu|TanganPemain]) :-
