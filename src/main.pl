@@ -4,12 +4,13 @@
 :- dynamic(buang_kartu/1).
 :- dynamic(turn/1).
 
+
 :- include('kartu.pl').
 :- include('validasi_pemain.pl').
 :- include('aksi_pendukung.pl').
 :- include('acak_dan_simpan_urutan.pl').
 :- include('testing.pl').
-
+:- include('mainkanKartu').
 /* Ini buat testing aja, ganti aja pas mau full */
 start_game :-
 
@@ -19,6 +20,7 @@ start_game :-
     % input jumlah pemain dan nama pemain
     inputBanyakPemain, nl,
     putNamaPemain, nl,
+    shuffle_urutan,
     nama_pemain(Players),
 
     % acak urutan pemain
