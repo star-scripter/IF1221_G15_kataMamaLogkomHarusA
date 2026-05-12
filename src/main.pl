@@ -9,13 +9,7 @@
 :- include('aksi_pendukung.pl').
 :- include('acak_dan_simpan_urutan.pl').
 :- include('testing.pl').
-<<<<<<< Updated upstream
-
-/* Ini buat testing aja, ganti aja pas mau full */
-start_game :-
-=======
 :- include('mainkanKartu.pl').
->>>>>>> Stashed changes
 
 start_game :-
     assertz(game_start),
