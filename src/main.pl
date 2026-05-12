@@ -10,7 +10,9 @@
 :- include('aksi_pendukung.pl').
 :- include('acak_dan_simpan_urutan.pl').
 :- include('testing.pl').
-:- include('mainkanKartu').
+:- include('mainkanKartu.pl').
+:- include('ambilKartu.pl').
+
 /* Ini buat testing aja, ganti aja pas mau full */
 start_game :-
 

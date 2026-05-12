@@ -18,3 +18,13 @@ get_element([_|T], Idx, Elem):-
 isInList(Elem, [Elem|_]).
 isInList(Elem, [_|T]) :-
     isInList(Elem, T).
+
+rotate_player([Pemain|Sisa]) :-
+    append(Sisa, [Pemain], UrutanBaru),
+    retract(urutan_pemain(_)),
+    assertz(urutan_pemain(UrutanBaru)),
+    UrutanBaru = [Next|_],
+    format('Giliran ~w.~n', [Next]).
+
+cetak_nama_kartu(kartu(Warna, angka(Angka))) :- !, format('~w-~d', [Warna, Angka]).
+cetak_nama_kartu(kartu(Warna, Jenis)) :- format('~w-~w', [Warna, Jenis]).
