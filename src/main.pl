@@ -6,6 +6,7 @@
 :- include('kartu.pl').
 :- include('validasi_pemain.pl').
 :- include('aksi_pendukung.pl').
+:- include('acak_dan_simpan_urutan.pl').
 :- include('testing.pl').
 
 /* Ini buat testing aja, ganti aja pas mau full */
