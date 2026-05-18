@@ -33,13 +33,6 @@ reverse_list([H|T], Acc, Rev):-
 cetak_nama_kartu(kartu(Warna, angka(Angka))) :- !, format('~w-~d', [Warna, Angka]).
 cetak_nama_kartu(kartu(Warna, Jenis)) :- format('~w-~w', [Warna, Jenis]).
 
-app(New, [], New).
-app(L1, L2, New):-
-    reverse_list(L1, [], Rev),
-    pushb(Rev, L2, L3),
-    reverse_list(L3, [], Rev1),
-    app(Rev1, [], New).
-
-pushb(L3, [], L3).
-pushb(L1, [H2|T2], L3):-
-    pushb([H2|L1], T2, L3).
+app([], L, L).
+app([H|T], L2, [H|Res]) :-
+    app(T, L2, Res).

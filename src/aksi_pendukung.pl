@@ -22,10 +22,15 @@ getPlayerHand(Hand) :-
 lihatKartu :-
     getPlayerHand(Hand),
     write('Berikut kartu yang anda miliki.'), nl,
-    write('Hand: '), write(Hand), nl,
+    printHand(Hand),
     !.
+
+printHand([]).
+printHand([Head|Tail]) :-
+    cetak_nama_kartu(Head), nl,
+    printHand(Tail).
 
 cekInfo :-
     buang_kartu(Top),
-    write('Kartu discard top: '), write(Top),nl,
+    write('Kartu discard top: '), cetak_nama_kartu(Top),nl,
     nl.
