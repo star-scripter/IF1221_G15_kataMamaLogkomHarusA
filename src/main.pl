@@ -13,16 +13,13 @@
 :- include('mainkanKartu.pl').
 :- include('ambilKartu.pl').
 
-start_game :-
+startGame :-
     assertz(game_start),
 
     inputBanyakPemain, nl,
     putNamaPemain, nl,
     shuffle_urutan,
     nama_pemain(Players),
-
-    shuffle_urutan,
-    urutan_pemain(Order),
     assertz(turn(0)),
     print_urutan,
 
@@ -37,7 +34,7 @@ start_game :-
     assertz(deck_utama(SisaDeckSetelahBuang)),
     
     nl, write('Game dimulai! 7 kartu telah dibagikan.'), nl,
-    nl, write('Kartu di tengah saat ini: '), write(KartuAwal), nl,
+    nl, write('Kartu di tengah saat ini: '), cetak_nama_kartu(KartuAwal), nl,
     print_giliran.
 
 bagi_kartu(0, Deck, Deck, []).
