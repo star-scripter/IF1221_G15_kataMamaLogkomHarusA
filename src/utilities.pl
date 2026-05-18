@@ -36,3 +36,8 @@ cetak_nama_kartu(kartu(Warna, Jenis)) :- format('~w-~w', [Warna, Jenis]).
 app([], L, L).
 app([H|T], L2, [H|Res]) :-
     app(T, L2, Res).
+
+getLength([], 0).
+getLength([H|T], N) :-
+    getLength(T,N1),
+    N is N1 + 1.
