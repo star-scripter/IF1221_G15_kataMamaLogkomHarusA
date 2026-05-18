@@ -26,5 +26,9 @@ rotate_player([Pemain|Sisa]) :-
     UrutanBaru = [Next|_],
     format('Giliran ~w.~n', [Next]).
 
+reverse_list([], _).
+reverse_list([H|T], _):-
+  reverse_list(T, [H|_]).
+
 cetak_nama_kartu(kartu(Warna, angka(Angka))) :- !, format('~w-~d', [Warna, Angka]).
 cetak_nama_kartu(kartu(Warna, Jenis)) :- format('~w-~w', [Warna, Jenis]).
