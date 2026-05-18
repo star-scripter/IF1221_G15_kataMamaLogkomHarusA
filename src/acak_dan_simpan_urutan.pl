@@ -16,7 +16,7 @@ shuffle_urutan:-
     get_element(Players, I, Selected),
     (
         isInList(Selected, Shuffled) -> fail;
-        append(Shuffled, [Selected], NewShuffled),
+        app(Shuffled, [Selected], NewShuffled),
         retractall(urutan_pemain(_)),
         assertz(urutan_pemain(NewShuffled))
     ),

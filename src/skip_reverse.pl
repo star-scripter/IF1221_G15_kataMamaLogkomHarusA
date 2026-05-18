@@ -7,7 +7,7 @@
 skip(Warna, skip):-
   kartu_valid(Warna, skip),
   urutan_pemain([Pemain|Sisa]),
-  append(Sisa, [Pemain], UrutanBaru),
+  app(Sisa, [Pemain], UrutanBaru),
   retractall(urutan_pemain(_)),
   assertz(urutan_pemain(UrutanBaru)).
 skip(Warna, _).

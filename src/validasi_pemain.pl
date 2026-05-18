@@ -36,7 +36,7 @@ putNamaPemain :-
 
 simpan(Input):-
     nama_pemain(Players),
-    append(Players, [Input], X1), retractall(nama_pemain(_)), assertz(nama_pemain(X1)).
+    app(Players, [Input], X1), retractall(nama_pemain(_)), assertz(nama_pemain(X1)).
 
 misInput(Input, Name, Players):-
     (

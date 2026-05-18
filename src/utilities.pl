@@ -20,7 +20,7 @@ isInList(Elem, [_|T]) :-
     isInList(Elem, T).
 
 rotate_player([Pemain|Sisa]) :-
-    append(Sisa, [Pemain], UrutanBaru),
+    app(Sisa, [Pemain], UrutanBaru),
     retract(urutan_pemain(_)),
     assertz(urutan_pemain(UrutanBaru)),
     UrutanBaru = [Next|_],
@@ -32,3 +32,10 @@ reverse_list([H|T], _):-
 
 cetak_nama_kartu(kartu(Warna, angka(Angka))) :- !, format('~w-~d', [Warna, Angka]).
 cetak_nama_kartu(kartu(Warna, Jenis)) :- format('~w-~w', [Warna, Jenis]).
+
+app([], [], _).
+app([], [H2, T2], _):-
+  app([], T2, [H2|_]).
+app(L1, _, []):-
+  reverse_list(_, L2),
+  app([], L2, L1).

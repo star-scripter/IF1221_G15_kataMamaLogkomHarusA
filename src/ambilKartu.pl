@@ -7,7 +7,7 @@ ambilKartu :-
     assertz(deck_utama(SisaDeck)),
     
     retract(tangan(Pemain, TanganLama)),
-    append(TanganLama, [KartuDitarik], TanganBaru),
+    app(TanganLama, [KartuDitarik], TanganBaru),
     assertz(tangan(Pemain, TanganBaru)),
 
     format('~w mendapatkan kartu: ', [Pemain]),
