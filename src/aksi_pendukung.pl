@@ -30,7 +30,28 @@ printHand([Head|Tail]) :-
     cetak_nama_kartu(Head), nl,
     printHand(Tail).
 
-cekInfo :-
-    buang_kartu(Top),
-    write('Kartu discard top: '), cetak_nama_kartu(Top),nl,
+printPlayerCardInfo(Player, Info, N) :-
+    format('Nama pemain ~d: ~w', [N, Player]), nl,
+    format('Jumlah kartu: ~d', [Info]), nl,
     nl.
+
+cekInfoHelper([], _, _) :-
+    nl.
+cekInfoHelper([H|T], Start, End) :-
+    Start =< End,
+    tangan(H, Hand),
+    getLength(Hand, Len),
+    printPlayerCardInfo(H, Len, Start),
+    S1 is Start + 1,
+    cekInfoHelper(T, S1, End).
+
+cekInfo :-
+    buang_kartu(Pile),
+    reverse_list(Pile, [], Rev),
+    get_element(Rev, 0, Top),
+    write('Kartu discard top: '), cetak_nama_kartu(Top),nl,
+    print_urutan, nl,
+    urutan_pemain(Order),
+    getLength(Order, Len),
+    cekInfoHelper(Order, 1, Len),
+    !.
