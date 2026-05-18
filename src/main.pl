@@ -12,6 +12,7 @@
 :- include('testing.pl').
 :- include('mainkanKartu.pl').
 :- include('ambilKartu.pl').
+:- include('warna_aktif.pl').
 
 startGame :-
     assertz(game_start),
@@ -30,6 +31,7 @@ startGame :-
     discard_pile(SisaDeck, KartuAwal, SisaDeckSetelahBuang),
 
     assertz(buang_kartu([KartuAwal])),
+    init_warna_aktif(KartuAwal),
 
     assertz(deck_utama(SisaDeckSetelahBuang)),
     
