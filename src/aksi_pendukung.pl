@@ -22,13 +22,14 @@ getPlayerHand(Hand) :-
 lihatKartu :-
     getPlayerHand(Hand),
     write('Berikut kartu yang anda miliki.'), nl,
-    printHand(Hand),
+    printHand(Hand, 1),
     !.
 
-printHand([]).
-printHand([Head|Tail]) :-
-    cetak_nama_kartu(Head), nl,
-    printHand(Tail).
+printHand([], _).
+printHand([Head|Tail], Cur) :-
+    format('~d. ', [Cur]), cetak_nama_kartu(Head), nl,
+    Cur1 is Cur + 1,
+    printHand(Tail, Cur1).
 
 printPlayerCardInfo(Player, Info, N) :-
     format('Nama pemain ~d: ~w', [N, Player]), nl,
@@ -47,8 +48,7 @@ cekInfoHelper([H|T], Start, End) :-
 
 cekInfo :-
     buang_kartu(Pile),
-    reverse_list(Pile, [], Rev),
-    get_element(Rev, 0, Top),
+    get_element(Pile, 0, Top),
     write('Kartu discard top: '), cetak_nama_kartu(Top),nl,
     print_urutan, nl,
     urutan_pemain(Order),
