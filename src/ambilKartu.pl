@@ -6,6 +6,8 @@ ambilKartu :-
     retract(deck_utama([KartuDitarik|SisaDeck])),
     assertz(deck_utama(SisaDeck)),
     
+    (status_uni(Pemain) -> retract(status_uni(Pemain)); true),
+
     retract(tangan(Pemain, TanganLama)),
     app(TanganLama, [KartuDitarik], TanganBaru),
     assertz(tangan(Pemain, TanganBaru)),
