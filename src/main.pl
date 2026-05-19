@@ -15,6 +15,7 @@
 :- include('ambilKartu.pl').
 :- include('warna_aktif.pl').
 :- include('uni.pl').
+:- include('draw.pl').
 :- include('tangkap.pl').
 :-include('endgame_detection.pl').
 
