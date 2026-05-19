@@ -1,7 +1,8 @@
 uni(N) :-
     ( 
         (turn(X), urutan_pemain(Order), get_element(Order, X, Player), tangan(Player, Hand), getLength(Hand, Len), Len =:= 2) -> uniHelper(N) -> 
-        format('~w menyerukan UNI', [Player]), nl;
+        format('~w menyerukan UNI', [Player]), nl,
+        assertz(status_uni(Player));
         write('Anda tidak dapat menyerukan UNI!'), nl,
         write('Anda ambil kartu...'), nl,
         ambilKartu
