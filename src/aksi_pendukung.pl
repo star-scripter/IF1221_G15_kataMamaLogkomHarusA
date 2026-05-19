@@ -47,8 +47,7 @@ cekInfoHelper([H|T], Start, End) :-
 
 cekInfo :-
     buang_kartu(Pile),
-    reverse_list(Pile, [], Rev),
-    get_element(Rev, 0, Top),
+    get_element(Pile, 0, Top),
     write('Kartu discard top: '), cetak_nama_kartu(Top),nl,
     print_urutan, nl,
     urutan_pemain(Order),
