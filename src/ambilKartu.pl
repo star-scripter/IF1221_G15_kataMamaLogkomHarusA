@@ -18,6 +18,7 @@ ambilKartu :-
             cetak_nama_kartu(KartuDitarik), nl
         )
     ),
+    (status_uni(Pemain) -> retract(status_uni(Pemain)); true),
     rotate_player.
     
     

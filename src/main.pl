@@ -3,6 +3,7 @@
 :- dynamic(tangan/2).
 :- dynamic(buang_kartu/1).
 :- dynamic(turn/1).
+:- dynamic(status_uni/1).
 
 
 :- include('kartu.pl').
@@ -15,6 +16,8 @@
 :- include('warna_aktif.pl').
 :- include('uni.pl').
 :- include('draw.pl').
+:- include('tangkap.pl').
+:-include('endgame_detection.pl').
 
 startGame :-
     assertz(game_start),

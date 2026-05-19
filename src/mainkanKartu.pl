@@ -40,7 +40,8 @@ mainkanKartu(N):-
         write('Kartu tidak valid! Silakan masukkan pilihan kartu kembali.'), nl, fail
         )
     ;write('Nomor urut kartu tidak ada di tangan!'), nl, fail
-    ).
+    ),
+    detectEndgame.
 
 
 
