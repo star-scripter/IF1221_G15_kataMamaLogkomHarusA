@@ -24,6 +24,18 @@ efek(kartu(hitam, wild_draw_four)):-
 efek(kartu(hitam,wild)):-
     pilih_warna.
 
+efek(kartu(_, skip)):-
+  urutan_pemain([Pemain|Sisa]),
+  app(Sisa, [Pemain], UrutanBaru),
+  retractall(urutan_pemain(_)),
+  assertz(urutan_pemain(UrutanBaru)).
+
+efek(kartu(_, reverse)):-
+  urutan_pemain([Pemain|Sisa]),
+  reverse_list(Sisa, [], Sisa1),
+  retractall(urutan_pemain(_)),
+  assertz([Pemain|Sisa1]).
+
 efek(KartuNormal):-
     KartuNormal \= kartu(_,draw_two),
     KartuNormal \= kartu(_,wild_draw_four),
