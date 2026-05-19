@@ -1,10 +1,6 @@
 :- dynamic(game_start/0).
-:- dynamic(deck_utama/1).
-:- dynamic(tangan/2).
-:- dynamic(buang_kartu/1).
-:- dynamic(turn/1).
 
-
+:- include('globals.pl').
 :- include('kartu.pl').
 :- include('validasi_pemain.pl').
 :- include('aksi_pendukung.pl').

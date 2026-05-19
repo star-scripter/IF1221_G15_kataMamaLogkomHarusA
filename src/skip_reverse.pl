@@ -1,8 +1,6 @@
-:- dynamic(dir/1).
-
-:- include(acak_dan_simpan_urutan.pl).
-:- include(utilities.pl).
-:- include(kartu.pl).
+:- include('globals.pl').
+:- include('utilities.pl').
+:- include('kartu.pl').
 
 efek(kartu(_, skip)):-
   urutan_pemain([Pemain|Sisa]),

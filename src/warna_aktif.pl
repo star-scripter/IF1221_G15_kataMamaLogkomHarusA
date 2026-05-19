@@ -1,4 +1,4 @@
-:- dynamic(warna_aktif/1).
+:- include('globals.pl').
 
 init_warna_aktif(kartu(Warna, _)) :-
     assertz(warna_aktif(Warna)).
