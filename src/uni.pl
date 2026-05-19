@@ -38,5 +38,5 @@ temporarySkip([Pemain|Sisa]) :-
     app(Sisa2, [Next], UrutanBaru1),
     retract(urutan_pemain(_)),
     assertz(urutan_pemain(UrutanBaru1)),
-    UrutanBaru1 = [Next1|_],   
+    UrutanBaru1 = [Next1|_],
     format('Giliran ~w.~n', [Next1]).

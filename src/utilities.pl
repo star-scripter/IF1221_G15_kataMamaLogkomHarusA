@@ -19,7 +19,8 @@ isInList(Elem, [Elem|_]).
 isInList(Elem, [_|T]) :-
     isInList(Elem, T).
 
-rotate_player([Pemain|Sisa]) :-
+rotate_player:-
+    urutan_pemain([Pemain|Sisa]),
     app(Sisa, [Pemain], UrutanBaru),
     retract(urutan_pemain(_)),
     assertz(urutan_pemain(UrutanBaru)),

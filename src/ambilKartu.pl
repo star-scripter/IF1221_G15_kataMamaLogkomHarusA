@@ -1,6 +1,3 @@
-:-include('kartu.pl').
-:-include('utilities.pl').
-
 ambilKartu :-
     urutan_pemain([Pemain|SisaUrutan]),
     retract(deck_utama([KartuDitarik|SisaDeck])),
@@ -13,6 +10,6 @@ ambilKartu :-
     format('~w mendapatkan kartu: ', [Pemain]),
     cetak_nama_kartu(KartuDitarik), nl,
 
-    rotate_player([Pemain|SisaUrutan]), !.
+    rotate_player, !.
     
 

@@ -14,6 +14,7 @@
 :- include('ambilKartu.pl').
 :- include('warna_aktif.pl').
 :- include('uni.pl').
+:- include('draw.pl').
 
 startGame :-
     assertz(game_start),
