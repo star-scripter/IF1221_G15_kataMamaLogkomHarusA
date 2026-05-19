@@ -21,7 +21,10 @@ mainkanKartu(N):-
         
         retract(tangan(Pemain, _)),
         assertz(tangan(Pemain, Sisa)),
-
+        
+        KartuDipilih = kartu(warna(W), _),
+        update_warna_aktif(W),
+        
         retract(buang_kartu(TumpukanLama)),
         assertz(buang_kartu([KartuDipilih|TumpukanLama])),
         

@@ -6,6 +6,7 @@
 :- dynamic(status_uni/1).
 
 
+:- include('globals.pl').
 :- include('kartu.pl').
 :- include('validasi_pemain.pl').
 :- include('aksi_pendukung.pl').

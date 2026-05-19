@@ -1,8 +1,6 @@
 :- include('utilities.pl').
+:- include('globals.pl').
 
-:- include('validasi_pemain.pl').
-
-:- dynamic(urutan_pemain/1).
 
 shuffle_urutan:-
     retractall(urutan_pemain(_)),
