@@ -16,6 +16,7 @@
 :- include('warna_aktif.pl').
 :- include('uni.pl').
 :- include('tangkap.pl').
+:-include('endgame_detection.pl').
 
 startGame :-
     assertz(game_start),
