@@ -13,6 +13,7 @@
 :- include('mainkanKartu.pl').
 :- include('ambilKartu.pl').
 :- include('warna_aktif.pl').
+:- include('uni.pl')
 
 startGame :-
     assertz(game_start),
