@@ -5,3 +5,4 @@
 :- dynamic(jumlah_pemain/1).
 :- dynamic(nama_pemain/1).
 :- dynamic(warna_aktif/1).
+:- dynamic(status_uni/1).
