@@ -5,11 +5,11 @@
 :- include('warna_aktif.pl').
 :- include('skip_reverse.pl').
 
-kartu_tumpuk(kartu_valid(_,angka(Angka)),kartu_valid(_,angka(Angka))).
-kartu_tumpuk(kartu_valid(Warna,_), kartu_valid(Warna,_)).
-kartu_tumpuk(kartu_valid(Warna, _), kartu_valid(hitam, _)):-
-  warna(W), Warna = W.
-kartu_tumpuk(kartu_valid(hitam, _), kartu_valid(_, _)).
+kartu_tumpuk(kartu(_,angka(Angka),kartu(_,angka(Angka))).
+kartu_tumpuk(kartu(Warna,_), kartu(Warna,_)).
+kartu_tumpuk(kartu(Warna, _), kartu(hitam, _)):-
+  warna_aktif(W), Warna = W.
+kartu_tumpuk(kartu(hitam, _), kartu(_, _)).
 
 
 mainkanKartu(N):-
