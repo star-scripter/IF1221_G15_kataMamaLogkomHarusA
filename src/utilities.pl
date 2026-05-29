@@ -22,7 +22,7 @@ isInList(Elem, [_|T]) :-
 rotate_player:-
     urutan_pemain([Pemain|Sisa]),
     app(Sisa, [Pemain], UrutanBaru),
-    retract(urutan_pemain(_)),
+    retractall(urutan_pemain(_)),
     assertz(urutan_pemain(UrutanBaru)),
     UrutanBaru = [Next|_],
     format('Giliran ~w.~n', [Next]).

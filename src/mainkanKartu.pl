@@ -10,7 +10,9 @@ kartu_tumpuk(kartu(Warna, skip), kartu(Warna, angka(_))).
 kartu_tumpuk(kartu(_, skip), kartu(_, skip)).
 kartu_tumpuk(kartu(Warna, reverse), kartu(Warna, angka(_))).
 kartu_tumpuk(kartu(_, reverse), kartu(_, reverse)).
-
+kartu_tumpuk(kartu(Warna, angka(_)), kartu(Warna, reverse)).
+kartu_tumpuk(kartu(Warna, angka(_)), kartu(Warna, skip)).
+kartu_tumpuk(kartu(Warna, angka(_)), kartu(Warna, draw_two)).
 
 mainkanKartu(N):-
     urutan_pemain([Pemain|SisaUrutan]),
@@ -24,32 +26,28 @@ mainkanKartu(N):-
         cetak_nama_kartu(KartuDipilih), write('.'), nl,
         
         retract(tangan(Pemain, _)),
-        print(1), nl,
         assertz(tangan(Pemain, Sisa)),
-        print(2), nl,
 
-        % KartuDipilih = kartu(warna(W), _),
-        % print(3), nl,
-        % update_warna_aktif(W),
-        % print(4), nl,
+        KartuDipilih = kartu(W, _),
+        update_warna_aktif(W),
 
         retract(buang_kartu(TumpukanLama)),
-        print(5), nl,
         assertz(buang_kartu([KartuDipilih|TumpukanLama])),
-        print(6), nl,
 
         (KartuDipilih = kartu(hitam,wild_draw_four)->
             pilih_warna,
-            print('cao'), nl,
+            efek(KartuDipilih),
             rotate_player
             ;
-            (KartuDipilih = kartu(_,draw_two)->
-                print('ni'), nl,
-                rotate_player
+            (KartuDipilih = kartu(_,reverse)->
+                efek(KartuDipilih)
                 ;
-                print('gga'), nl,
-                efek(KartuDipilih),
-                rotate_player
+                (KartuDipilih = kartu(_,skip)->
+                    efek(KartuDipilih)
+                    ;
+                    efek(KartuDipilih),
+                    rotate_player
+                )
             )
         )
         ;
