@@ -1,7 +1,5 @@
 :- include('utilities.pl').
-
-:- dynamic(jumlah_pemain/1).
-:- dynamic(nama_pemain/1).
+:- include('globals.pl').
 
 
 inputBanyakPemain :-

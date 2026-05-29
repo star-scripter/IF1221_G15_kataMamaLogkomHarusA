@@ -6,7 +6,13 @@ kartu_tumpuk(kartu(Warna,angka(_)),kartu(Warna,angka(_))).
 kartu_tumpuk(kartu(_,angka(Angka)),kartu(_,angka(Angka))).
 kartu_tumpuk(kartu(Warna, draw_two),kartu(Warna,angka(_))).
 kartu_tumpuk(kartu(_, draw_two), kartu(_, draw_two)):- !, fail.
-
+kartu_tumpuk(kartu(Warna, skip), kartu(Warna, angka(_))).
+kartu_tumpuk(kartu(_, skip), kartu(_, skip)).
+kartu_tumpuk(kartu(Warna, reverse), kartu(Warna, angka(_))).
+kartu_tumpuk(kartu(_, reverse), kartu(_, reverse)).
+kartu_tumpuk(kartu(Warna, angka(_)), kartu(Warna, reverse)).
+kartu_tumpuk(kartu(Warna, angka(_)), kartu(Warna, skip)).
+kartu_tumpuk(kartu(Warna, angka(_)), kartu(Warna, draw_two)).
 
 mainkanKartu(N):-
     urutan_pemain([Pemain|SisaUrutan]),
@@ -22,18 +28,26 @@ mainkanKartu(N):-
         retract(tangan(Pemain, _)),
         assertz(tangan(Pemain, Sisa)),
 
+        KartuDipilih = kartu(W, _),
+        update_warna_aktif(W),
+
         retract(buang_kartu(TumpukanLama)),
         assertz(buang_kartu([KartuDipilih|TumpukanLama])),
-        
+
         (KartuDipilih = kartu(hitam,wild_draw_four)->
             pilih_warna,
+            efek(KartuDipilih),
             rotate_player
             ;
-            (KartuDipilih = kartu(_,draw_two)->
-                rotate_player
+            (KartuDipilih = kartu(_,reverse)->
+                efek(KartuDipilih)
                 ;
-                efek(KartuDipilih),
-                rotate_player
+                (KartuDipilih = kartu(_,skip)->
+                    efek(KartuDipilih)
+                    ;
+                    efek(KartuDipilih),
+                    rotate_player
+                )
             )
         )
         ;
