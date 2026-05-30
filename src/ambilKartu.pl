@@ -2,14 +2,13 @@ ambilKartu :-
     urutan_pemain([Pemain|SisaUrutan]),
     buang_kartu([KartuAtas|_]),
     (penalti_aktif(wild_draw_four)->
-        urutan_pemain([PemainSekarang,PemainTarget|SisaUrutan]),
+        urutan_pemain([PemainSekarang,PemainTarget|SisaLain]),
         draw(PemainTarget),
         draw(PemainTarget),
         draw(PemainTarget),
         draw(PemainTarget),
         retract(penalti_aktif(wild_draw_four))
         ;
- 
         retract(deck_utama([KartuDitarik|SisaDeck])),
         assertz(deck_utama(SisaDeck)),
         

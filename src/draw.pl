@@ -14,6 +14,7 @@ efek(kartu(_, draw_two)):-
     format('Pemain ~w mendapatkan 2 kartu',[PemainTarget]),
     draw(PemainTarget),
     draw(PemainTarget),
+    rotate_player,
     rotate_player.
 
 efek(kartu(hitam,wild)):-
