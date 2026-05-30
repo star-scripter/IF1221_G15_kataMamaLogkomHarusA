@@ -4,7 +4,7 @@
 :- dynamic(buang_kartu/1).
 :- dynamic(turn/1).
 :- dynamic(status_uni/1).
-
+:- dynamic(penalti_aktif/1).
 
 :- include('kartu.pl').
 :- include('validasi_pemain.pl').
@@ -20,6 +20,16 @@
 :-include('endgame_detection.pl').
 
 startGame :-
+    retractall(game_start),
+    retractall(jumlah_pemain(_)),
+    retractall(nama_pemain(_)),
+    retractall(urutan_pemain(_)),
+    retractall(tangan(_, _)),
+    retractall(deck_utama(_)),
+    retractall(buang_kartu(_)),
+    retractall(warna_aktif(_)),
+    retractall(penalti_aktif(_)),
+
     assertz(game_start),
 
     inputBanyakPemain, nl,

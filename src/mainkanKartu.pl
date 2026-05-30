@@ -5,6 +5,7 @@ kartu_tumpuk(kartu(Warna,_),kartu(hitam,_)):-warna_aktif(Warna).
 kartu_tumpuk(kartu(Warna,angka(_)),kartu(Warna,angka(_))).
 kartu_tumpuk(kartu(_,angka(Angka)),kartu(_,angka(Angka))).
 kartu_tumpuk(kartu(Warna, draw_two),kartu(Warna,angka(_))).
+kartu_tumpuk(kartu(Warna, _),kartu(Warna, draw_two)).
 kartu_tumpuk(kartu(_, draw_two), kartu(_, draw_two)):- !, fail.
 
 
@@ -26,10 +27,12 @@ mainkanKartu(N):-
         assertz(buang_kartu([KartuDipilih|TumpukanLama])),
         
         (KartuDipilih = kartu(hitam,wild_draw_four)->
+            assertz(penalti_aktif(wild_draw_four)),
             pilih_warna,
             rotate_player
             ;
             (KartuDipilih = kartu(_,draw_two)->
+                efek(KartuDipilih),
                 rotate_player
                 ;
                 efek(KartuDipilih),

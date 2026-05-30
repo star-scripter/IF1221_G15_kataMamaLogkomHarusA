@@ -11,15 +11,17 @@ draw(Pemain):-
 
 efek(kartu(_, draw_two)):-
     urutan_pemain([PemainSekarang,PemainTarget|SisaUrutan]),
+    format('Pemain ~w mendapatkan 2 kartu',[PemainTarget]),
     draw(PemainTarget),
-    draw(PemainTarget).
+    draw(PemainTarget),
+    rotate_player.
 
-efek(kartu(hitam, wild_draw_four)):-
-    urutan_pemain([PemainSekarang,PemainTarget|SisaUrutan]),
-    draw(PemainTarget),
-    draw(PemainTarget),
-    draw(PemainTarget),
-    draw(PemainTarget).
+% efek(kartu(hitam, wild_draw_four)):-
+    % urutan_pemain([PemainSekarang,PemainTarget|SisaUrutan]),
+    % draw(PemainTarget),
+    % draw(PemainTarget),
+    % draw(PemainTarget),
+    % draw(PemainTarget).
 
 efek(kartu(hitam,wild)):-
     pilih_warna.
