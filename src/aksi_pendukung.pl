@@ -7,12 +7,39 @@ lihatCommand :-
     game_start,
     write('Aksi utama yang tersedia: '),nl,
     write('1. ambilKartu'),nl,
-    write('2. tantang'),nl,
+    write('2. mainkanKartu'),nl,
+    writeValid(3, N),
     nl,
     write('Aksi pendukung yang tersedia: '),nl,
     write('1. lihatCommand'),nl,
     write('2. lihatKartu'),nl,
     write('3. cekInfo'),nl.
+
+writeAction(Status, Command, Nin, Nout):-
+    checkValid(Status),
+    !,
+    format('~d. ~w',[Nin, Command]),nl,
+    Nout is Nin + 1.
+writeAction(_,_,N,N).
+
+writeValid(NStart, NEnd):-
+    writeAction(can_tantang, tantang, NStart, N1),
+    writeAction(can_uni, uni, N1, N2),
+    writeAction(can_tangkap, tangkap, N2, NEnd).
+
+checkValid(can_tantang):-
+    penalti_aktif(wild_draw_four).
+checkValid(can_uni):-
+    turn(X), 
+    urutan_pemain(Order), 
+    get_element(Order, X, Player), 
+    tangan(Player, Hand), 
+    getLength(Hand, Len), 
+    Len =:= 2.
+checkValid(can_tangkap):-
+    \+ status_uni(Player),
+    tangan(Player,Hand),
+    getLength(Hand,1).
 
 getPlayerHand(Hand) :-
     turn(Player),
