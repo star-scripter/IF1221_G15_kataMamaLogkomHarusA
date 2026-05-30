@@ -20,6 +20,11 @@
 :- include('endgame_detection.pl').
 
 startGame :-
+    game_start,
+    write('Game sudah bermulai!'), nl,
+    !.
+startGame :-
+    \+ game_start,
     retractall(game_start),
     retractall(jumlah_pemain(_)),
     retractall(nama_pemain(_)),
@@ -30,10 +35,9 @@ startGame :-
     retractall(warna_aktif(_)),
     retractall(penalti_aktif(_)),
 
-    assertz(game_start),
-
     inputBanyakPemain, nl,
     putNamaPemain, nl,
+    assertz(game_start),
     shuffle_urutan,
     nama_pemain(Players),
     assertz(turn(0)),
