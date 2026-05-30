@@ -7,6 +7,12 @@ kartu_tumpuk(kartu(_,angka(Angka)),kartu(_,angka(Angka))).
 kartu_tumpuk(kartu(Warna, draw_two),kartu(Warna,angka(_))).
 kartu_tumpuk(kartu(Warna, _),kartu(Warna, draw_two)).
 kartu_tumpuk(kartu(_, draw_two), kartu(_, draw_two)):- !, fail.
+kartu_tumpuk(kartu(Warna, skip), kartu(Warna, angka(_))).
+kartu_tumpuk(kartu(_, skip), kartu(_, skip)).
+kartu_tumpuk(kartu(Warna, reverse), kartu(Warna, angka(_))).
+kartu_tumpuk(kartu(_, reverse), kartu(_, reverse)).
+kartu_tumpuk(kartu(Warna, angka(_)), kartu(Warna, reverse)).
+kartu_tumpuk(kartu(Warna, angka(_)), kartu(Warna, skip)).
 
 
 mainkanKartu(N):-
@@ -23,21 +29,19 @@ mainkanKartu(N):-
         retract(tangan(Pemain, _)),
         assertz(tangan(Pemain, Sisa)),
 
+        KartuDipilih = kartu(W, _),
+        update_warna_aktif(W),
+
         retract(buang_kartu(TumpukanLama)),
         assertz(buang_kartu([KartuDipilih|TumpukanLama])),
-        
+
         (KartuDipilih = kartu(hitam,wild_draw_four)->
             assertz(penalti_aktif(wild_draw_four)),
             pilih_warna,
             rotate_player
             ;
-            (KartuDipilih = kartu(_,draw_two)->
-                efek(KartuDipilih),
-                rotate_player
-                ;
-                efek(KartuDipilih),
-                rotate_player
-            )
+            efek(KartuDipilih)
+
         )
         ;
         write('Kartu tidak valid! Silakan masukkan pilihan kartu kembali.'), nl, fail
