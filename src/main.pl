@@ -35,10 +35,9 @@ startGame :-
     retractall(warna_aktif(_)),
     retractall(penalti_aktif(_)),
 
-    assertz(game_start),
-
     inputBanyakPemain, nl,
     putNamaPemain, nl,
+    assertz(game_start),
     shuffle_urutan,
     nama_pemain(Players),
     assertz(turn(0)),

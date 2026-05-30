@@ -15,7 +15,7 @@ tangkap(Player) :-
     accPenalty,
     retract(urutan_pemain(_)),
     assertz(urutan_pemain(Current)),
-    rotate_player(Current). 
+    rotate_player. 
 tangkap(Player) :-
     status_uni(Player),
     urutan_pemain([H|_]),
