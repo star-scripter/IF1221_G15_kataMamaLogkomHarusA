@@ -20,6 +20,11 @@
 :- include('endgame_detection.pl').
 
 startGame :-
+    game_start,
+    write('Game sudah bermulai!'), nl,
+    !.
+startGame :-
+    \+ game_start,
     retractall(game_start),
     retractall(jumlah_pemain(_)),
     retractall(nama_pemain(_)),
