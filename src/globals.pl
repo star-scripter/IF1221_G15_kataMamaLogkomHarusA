@@ -5,3 +5,4 @@
 :- dynamic(nama_pemain/1).
 :- dynamic(warna_aktif/1).
 :- dynamic(arah_permainan/1).
+:- dynamic(turn/1).

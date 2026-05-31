@@ -33,7 +33,7 @@ kartu_valid(Warna, reverse) :-
 kartu_valid(Warna, draw_two) :-
     warna(Warna).
 
-acak_deck([], []).
+acak_deck([], []) :- !.
 acak_deck(List, [Kartu|Acak]) :-
     length(List, Len),
     random(0, Len, IndeksAcak),
@@ -50,9 +50,19 @@ deck_generate(DeckAcak) :-
     findall(kartu(Warna, Jenis), kartu_valid(Warna, Jenis), Deck),
     acak_deck(Deck, DeckAcak).
 
-discard_pile([kartu(Warna, angka(Angka)) | SisaDeck], kartu(Warna, angka(Angka)), SisaDeck), !.
+% discard_pile([kartu(Warna, angka(Angka)) | SisaDeck], kartu(Warna, angka(Angka)), SisaDeck).
+% ini yg td blm di-fix
 
-discard_pile([KartuSpesial | SisaDeck], KartuAwal, SisaDeckSetelahBuang) :-
-    KartuSpesial \= kartu(_, angka(_)),
+discard_pile(Deck, KartuAwal, SisaDeck) :-
+    length(Deck, Len),
+    discard_pile_safe(Deck, KartuAwal, SisaDeck, Len).
+
+discard_pile_safe([kartu(Warna, angka(Angka)) | SisaDeck], kartu(Warna, angka(Angka)), SisaDeck, _) :- !.
+
+discard_pile_safe([KartuSpesial | SisaDeck], KartuAwal, SisaDeckSetelahBuang, Counter) :-
+    Counter > 0,
+    NewCounter is Counter - 1,
     app(SisaDeck, [KartuSpesial], DeckBaru),
-    discard_pile(DeckBaru, KartuAwal, SisaDeckSetelahBuang).
+    discard_pile_safe(DeckBaru, KartuAwal, SisaDeckSetelahBuang, NewCounter).
+
+discard_pile_safe([Kartu | SisaDeck], Kartu, SisaDeck, 0) :- !.

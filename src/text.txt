@@ -1,0 +1,8 @@
+urutan_pemain:[hugo,jovan].
+giliran:hugo.
+discard_top:hijau-9.
+warna_aktif:hijau.
+arah_permainan:kanan.
+status_UNI:[].
+kartu(hugo):[biru-reverse,merah-2,merah-5,kuning-reverse,biru-draw_two,kuning-draw_two].
+kartu(jovan):[biru-6,hijau-2,biru-8,hijau-7,merah-0,biru-draw_two].

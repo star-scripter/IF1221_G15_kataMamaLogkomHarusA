@@ -18,6 +18,7 @@ detectEndgame :-
     
     gatherWinners(Urutan, []).
 
+detectEndgame. % ini untuk bugfix td -jovan yg pasang
 
 parseCardPoints(kartu(_, angka(0)), 1) :- !.
 parseCardPoints(kartu(_, angka(X)), X) :- !.
