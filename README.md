@@ -62,6 +62,7 @@ IF1221_G15_kataMamaLogkomHarusA
 │   ├── mainkanKartu.pl
 │   ├── saveload.pl
 │   ├── tangkap.pl
+│   ├── tantang.pl
 │   ├── testing.pl
 │   ├── text.txt
 │   ├── uni.pl

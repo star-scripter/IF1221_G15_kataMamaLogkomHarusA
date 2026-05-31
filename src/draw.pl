@@ -8,6 +8,7 @@ draw(Pemain):-
     retract(tangan(Pemain, TanganLama)),
     app(TanganLama, [KartuDiambil], TanganBaru),
     cetak_nama_kartu(KartuDiambil), nl,
+    (status_uni(Pemain) -> retract(status_uni(Pemain)); true),
     assertz(tangan(Pemain, TanganBaru)).
 
 efek(kartu(_, draw_two)):-
