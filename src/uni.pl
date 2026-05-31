@@ -15,6 +15,7 @@ uniHelper(N):-
 
         (kartu_tumpuk(KartuDipilih,KartuAtas)->
         format('~w memainkan kartu: ', [Pemain]),
+        cetak_nama_kartu(KartuDipilih), write('.'), nl,
         format('~w menyerukan UNI', [Pemain]), nl,
         nl,
         cetak_nama_kartu(KartuDipilih), write('.'), nl,
