@@ -30,6 +30,7 @@ efek(kartu(hitam,wild)):-
 efek(kartu(_, skip)):-
   urutan_pemain([Pemain|Sisa]),
   app(Sisa, [Pemain], UrutanBaru),
+  format('Giliran ~w dilewatkan. ~n', [Pemain]),
   UrutanBaru = [Pemain1|Sisa1],
   app(Sisa1, [Pemain1], UrutanBaru1),
   retractall(urutan_pemain(_)),
@@ -44,14 +45,10 @@ efek(kartu(_, reverse)):-
   retractall(urutan_pemain(_)),
   assertz(urutan_pemain(UrutanBaru)),
   UrutanBaru = [Next|_],
+  print_urutan,nl,
   format('Giliran ~w.~n', [Next]).
 
-efek(KartuNormal):-
-    KartuNormal \= kartu(_,draw_two),
-    KartuNormal \= kartu(_,wild_draw_four),
-    KartuNormal \= kartu(_,wild),
-    KartuNormal \= kartu(_, skip),
-    KartuNormal \= kartu(_, reverse),
+efek(kartu(_,angka(_))):-
     rotate_player.
     
 pilih_warna:-

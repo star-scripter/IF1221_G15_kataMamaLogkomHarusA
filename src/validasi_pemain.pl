@@ -23,7 +23,7 @@ putNamaPemain :-
     jumlah_pemain(Num), 
     repeat,
     nama_pemain(Players),
-    length(Players, L),
+    getLength(Players, L),
     (
         (L=:=Num) -> !;
         write('Masukkan nama pemain '), Cur is L+1, write(Cur) , write(': '),

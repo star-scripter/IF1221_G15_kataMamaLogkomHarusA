@@ -14,7 +14,12 @@ mainkanKartu(N):-
 mainkanKartu(N):-
     urutan_pemain([Pemain|_]),
     penalti_aktif(wild_draw_four),
-    format('Pemain ~w harus mengambil kartu atau menantang pemain sebelumnya',[Pemain]).
+    format('Pemain ~w harus mengambil kartu atau menantang pemain sebelumnya.~n',[Pemain]),!.
+
+mainkanKartu(N):-
+    urutan_pemain([Pemain|_]),
+    penalti_aktif(draw_two),
+    format('Pemain ~w harus mengambil kartu.~n',[Pemain]),!.
     
 mainkanKartu(N):-
     \+ penalti_aktif(wild_draw_four),
@@ -40,6 +45,11 @@ mainkanKartu(N):-
         assertz(buang_kartu([KartuDipilih|TumpukanLama])),
 
         (KartuDipilih = kartu(hitam,wild_draw_four)->
+            (cekTipu(Sisa,KartuAtas)->
+                assertz(playerTipu(Pemain,bohong))
+            ;
+                assertz(playerTipu(Pemain,jujur))
+            ),
             assertz(penalti_aktif(wild_draw_four)),
             pilih_warna,
             rotate_player
