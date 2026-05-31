@@ -50,4 +50,9 @@ deck_generate(DeckAcak) :-
     findall(kartu(Warna, Jenis), kartu_valid(Warna, Jenis), Deck),
     acak_deck(Deck, DeckAcak).
 
-discard_pile([kartu(Warna, angka(Angka)) | SisaDeck], kartu(Warna, angka(Angka)), SisaDeck).
+discard_pile([kartu(Warna, angka(Angka)) | SisaDeck], kartu(Warna, angka(Angka)), SisaDeck), !.
+
+discard_pile([KartuSpesial | SisaDeck], KartuAwal, SisaDeckSetelahBuang) :-
+    KartuSpesial \= kartu(_, angka(_)),
+    app(SisaDeck, [KartuSpesial], DeckBaru),
+    discard_pile(DeckBaru, KartuAwal, SisaDeckSetelahBuang).
