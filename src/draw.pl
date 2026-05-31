@@ -10,12 +10,18 @@ draw(Pemain):-
     assertz(tangan(Pemain, TanganBaru)).
 
 efek(kartu(_, draw_two)):-
-    urutan_pemain([PemainSekarang,PemainTarget|SisaUrutan]),
-    format('Pemain ~w mendapatkan 2 kartu',[PemainTarget]),
+    urutan_pemain([PemainTarget|_]),
     draw(PemainTarget),
     draw(PemainTarget),
-    rotate_player,
-    rotate_player.
+    retract(penalti_aktif(draw_two)).
+
+efek(kartu(hitam, wild_draw_four)):-
+    urutan_pemain([PemainTarget|_]),
+    draw(PemainTarget),
+    draw(PemainTarget),
+    draw(PemainTarget),
+    draw(PemainTarget),
+    retract(penalti_aktif(wild_draw_four)).
 
 efek(kartu(hitam,wild)):-
     pilih_warna,
