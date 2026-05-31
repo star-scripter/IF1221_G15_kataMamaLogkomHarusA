@@ -47,7 +47,7 @@ ambil_elemen(N, [H|T], Elemen, [H|Sisa]) :-
     ambil_elemen(N1, T, Elemen, Sisa).
 
 deck_generate(DeckAcak) :-
-    findall(kartu(Warna, Jenis), kartu_valid(Warna, Jenis), Deck),
+    getFindall(kartu(Warna, Jenis), kartu_valid(Warna, Jenis), Deck),
     acak_deck(Deck, DeckAcak).
 
 % discard_pile([kartu(Warna, angka(Angka)) | SisaDeck], kartu(Warna, angka(Angka)), SisaDeck).

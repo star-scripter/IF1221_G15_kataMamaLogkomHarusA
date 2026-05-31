@@ -1,3 +1,5 @@
+:- dynamic(temp_result/1).
+
 delete_element([_|Tail], 0, Tail).
 delete_element([Head|Tail], Index, [Head|UpdatedTail]) :-
     Index > 0,
@@ -42,3 +44,36 @@ getLength([], 0).
 getLength([H|T], N) :-
     getLength(T,N1),
     N is N1 + 1.
+
+getFindall(Template, Goal, ResultList) :-
+    retractall(temp_result(_)),
+    (   call(Goal),
+        assertz(temp_result(Template)),
+        fail
+    ;   true
+    ),
+    collect_results(ResultList).
+
+collect_results([H|T]) :-
+    retract(temp_result(H)),
+    !,
+    collect_results(T).
+collect_results([]).
+
+manualConcat(List, Result) :- 
+    manualConcat(List, '', Result).
+
+manualConcat([], _, '').
+
+manualConcat([H], _, HAtom) :-
+    !,
+    ubah_ke_atom(H, HAtom).
+
+manualConcat([H|T], Separator, Result) :-
+    ubah_ke_atom(H, HAtom),
+    manualConcat(T, Separator, TailResult),
+    atom_concat(HAtom, Separator, Temp),
+    atom_concat(Temp, TailResult, Result).
+
+ubah_ke_atom(Val, Atom) :-
+    (number(Val) -> atom_number(Val, Atom) ; Atom = Val).

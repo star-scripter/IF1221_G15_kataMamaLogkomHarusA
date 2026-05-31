@@ -63,7 +63,7 @@ tulis_kartu_pemain(Stream, [Pemain|Rest]) :-
 
 % 4. predikat bantu lainnya
 giliran_sekarang(Pemain) :- urutan_pemain([Pemain|_]).
-kumpul_status_uni(List) :- findall(P, status_uni(P), List).
+kumpul_status_uni(List) :- getFindall(P, status_uni(P), List).
 arah_sekarang(Arah) :- (arah_permainan(Arah) -> true ; Arah = kanan).
 
 % 5. saveGame
@@ -87,7 +87,7 @@ saveGame :-
 saveGame :-
     write('Masukkan nama file penyimpanan: '),
     read(NamaFile),
-    atomic_list_concat([NamaFile, '.txt'], NamaFileLengkap),
+    manualConcat([NamaFile, '.txt'], NamaFileLengkap),
     open(NamaFileLengkap, write, Stream),
     saveGame_tulis(Stream),
     close(Stream),
@@ -147,7 +147,7 @@ loadGame :-
 loadGame :-
     write('Masukkan nama file yang akan dimuat: '),
     read(NamaFile),
-    atomic_list_concat([NamaFile, '.txt'], NamaFileLengkap),
+    manualConcat([NamaFile, '.txt'], NamaFileLengkap),
     (exists_file(NamaFileLengkap) ->
         bersihkan_state,
         baca_file(NamaFileLengkap, Baris),
@@ -239,8 +239,8 @@ assertz_status_uni([P|Rest]) :-
     assertz_status_uni(Rest).
 
 pulihkan_deck_utama :-
-    findall(kartu(Warna, Jenis), kartu_valid(Warna, Jenis), FullDeck),
-    findall(K, (tangan(_, Hand), isInList(K, Hand)), KartuDiTangan),
+    getFindall(kartu(Warna, Jenis), kartu_valid(Warna, Jenis), FullDeck),
+    getFindall(K, (tangan(_, Hand), isInList(K, Hand)), KartuDiTangan),
     buang_kartu([TopCard|_]),
     app(KartuDiTangan, [TopCard], KartuTerpakai),
     kurangi_list(FullDeck, KartuTerpakai, SisaDeck),
