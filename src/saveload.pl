@@ -142,13 +142,13 @@ saveGame_tulis(Stream) :-
 loadGame :-
     game_start,
     !,
-    write('Gagal memuat: loadGame hanya bisa dipanggil SEBELUM permainan dimulai!'), nl.
+    write('Gagal memuat: loadGame hanya bisa dipanggil sebelum permainan dimulai!'), nl.
 
 loadGame :-
     write('Masukkan nama file yang akan dimuat: '),
     read(NamaFile),
     manualConcat([NamaFile, '.txt'], NamaFileLengkap),
-    (exists_file(NamaFileLengkap) ->
+    (file_exists(NamaFileLengkap) ->
         bersihkan_state,
         baca_file(NamaFileLengkap, Baris),
         proses_semua_baris(Baris),
