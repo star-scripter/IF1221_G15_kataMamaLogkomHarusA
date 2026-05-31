@@ -14,8 +14,9 @@ uniHelper(N):-
         buang_kartu([KartuAtas|_]),
 
         (kartu_tumpuk(KartuDipilih,KartuAtas)->
-        format('~w menyerukan UNI', [Pemain]), nl,
         format('~w memainkan kartu: ', [Pemain]),
+        format('~w menyerukan UNI', [Pemain]), nl,
+        nl,
         cetak_nama_kartu(KartuDipilih), write('.'), nl,
         
         retract(tangan(Pemain, _)),
@@ -40,4 +41,6 @@ temporarySkip([Pemain|Sisa]) :-
     retract(urutan_pemain(_)),
     assertz(urutan_pemain(UrutanBaru1)),
     UrutanBaru1 = [Next1|_],
+    write('Pemain berikutnya kehilangan giliran.'), nl,
+    nl,
     format('Giliran ~w.~n', [Next1]).
