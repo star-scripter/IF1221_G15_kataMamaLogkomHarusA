@@ -1,0 +1,9 @@
+urutan_pemain:[hugo,daniel,johansen].
+giliran:hugo.
+discard_top:kuning-draw_two.
+warna_aktif:kuning.
+arah_permainan:kanan.
+status_UNI:[].
+kartu(hugo):[merah-skip,hijau-0,kuning-0,merah-5,merah-8,merah-1,biru-0].
+kartu(daniel):[hijau-8,hijau-1,merah-reverse,biru-6,hijau-5,biru-7].
+kartu(johansen):[kuning-8,merah-5,hijau-draw_two,hijau-7,biru-4,biru-reverse,kuning-7,hijau-8,kuning-0].

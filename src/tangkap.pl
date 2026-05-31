@@ -26,7 +26,11 @@ tangkap(_) :-
     write('Perintah tidak valid!'), nl.
 
 rotateUntil(_,[],[]).
-rotateUntil(Head,[Head|_],[Head|_]).
+% rotateUntil(Head,[Head|_],[Head|_]).
+% ini diganti sementara untuk bug fix -jovan
+
+rotateUntil(Head, [Head|Tail], [Head|Tail]).
+
 rotateUntil(Player, [Head|Tail], Result) :-
     Head \= Player,
     app(Tail, [Head], Result1),
