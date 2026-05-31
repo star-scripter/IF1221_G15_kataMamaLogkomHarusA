@@ -54,7 +54,7 @@ deck_generate(DeckAcak) :-
 % ini yg td blm di-fix
 
 discard_pile(Deck, KartuAwal, SisaDeck) :-
-    length(Deck, Len),
+    getLength(Deck, Len),
     discard_pile_safe(Deck, KartuAwal, SisaDeck, Len).
 
 discard_pile_safe([kartu(Warna, angka(Angka)) | SisaDeck], kartu(Warna, angka(Angka)), SisaDeck, _) :- !.

@@ -77,6 +77,7 @@ cekInfo :-
     buang_kartu(Pile),
     get_element(Pile, 0, Top),
     write('Kartu discard top: '), cetak_nama_kartu(Top),nl,
+    tampil_warna_aktif,
     print_urutan, nl,
     urutan_pemain(Order),
     getLength(Order, Len),
