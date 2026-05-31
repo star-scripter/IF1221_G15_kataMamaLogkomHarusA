@@ -27,9 +27,8 @@ uniHelper(N):-
             retract(buang_kartu(TumpukanLama)),
             assertz(buang_kartu([KartuDipilih|TumpukanLama])),
 
-            temporarySkip([Pemain|SisaUrutan]),
             assertz(status_uni(Pemain)),
-            
+
             (KartuDipilih = kartu(hitam, wild_draw_four) ->
                 (cekTipu(Sisa, KartuAtas) ->
                     assertz(playerTipu(Pemain, bohong))
@@ -53,16 +52,3 @@ uniHelper(N):-
     ;
         write('Nomor urut kartu tidak ada di tangan!'), nl, fail
     ).
-
-temporarySkip([Pemain|Sisa]) :-
-    app(Sisa, [Pemain], UrutanBaru),
-    retract(urutan_pemain(_)),
-    assertz(urutan_pemain(UrutanBaru)),
-    UrutanBaru = [Next|Sisa2],
-    app(Sisa2, [Next], UrutanBaru1),
-    retract(urutan_pemain(_)),
-    assertz(urutan_pemain(UrutanBaru1)),
-    UrutanBaru1 = [Next1|_],
-    write('Pemain berikutnya kehilangan giliran.'), nl,
-    nl,
-    format('Giliran ~w.~n', [Next1]).
