@@ -4,6 +4,7 @@
 :- dynamic(buang_kartu/1).
 :- dynamic(status_uni/1).
 :- dynamic(penalti_aktif/1).
+:- dynamic(playerTipu/2).
 
 :- include('globals.pl').
 :- include('kartu.pl').
@@ -19,6 +20,8 @@
 :- include('tangkap.pl').
 :- include('endgame_detection.pl').
 :- include('saveload.pl').
+:- include('tantang.pl').
+
 
 startGame :-
     game_start,

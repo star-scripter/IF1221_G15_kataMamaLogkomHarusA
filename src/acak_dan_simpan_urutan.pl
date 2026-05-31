@@ -19,7 +19,7 @@ shuffle_urutan:-
         assertz(urutan_pemain(NewShuffled))
     ),
     urutan_pemain(Current),
-    length(Current, L),
+    getLength(Current, L),
     L =:= Num,
     !.
 
