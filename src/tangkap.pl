@@ -1,7 +1,10 @@
 tangkap(Player) :-
     tangan(Player, Hand), 
     getLength(Hand, 1),
-    \+ status_uni(Player), !,
+    \+ status_uni(Player),
+    (penalti_aktif(wild_draw_four) -> retract(penalti_aktif(wild_draw_four)); true),
+    (penalti_aktif(draw_two) -> retract(penalti_aktif(draw_two)); true), 
+    !,
     format('~w tertangkap tidak menyerukan UNI.', [Player]), nl,
     format('~w mendapatkan 2 kartu penalti.', [Player]), nl,
 
@@ -16,6 +19,14 @@ tangkap(Player) :-
     retract(urutan_pemain(_)),
     assertz(urutan_pemain(Current)),
     rotate_player. 
+tangkap(Player) :-
+    tangan(Player, Hand), 
+    getLength(Hand, L),
+    L > 1,
+    urutan_pemain([H|_]),
+    format('~w tidak berjumlah 1!!', [Player]), nl,
+    format('~w mendapatkan 1 kartu penalti', [H]), nl,
+    ambilKartu.
 tangkap(Player) :-
     status_uni(Player),
     urutan_pemain([H|_]),

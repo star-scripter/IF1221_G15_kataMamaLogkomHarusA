@@ -23,12 +23,14 @@ writeAction(_, _, N, N).
 writeValid(NStart, NEnd):-
     penalti_aktif(draw_two),
     !,
-    writeAction(force_draw, ambilKartu, NStart, NEnd).
+    writeAction(can_tangkap, tangkap, NStart, N1),
+    writeAction(force_draw, ambilKartu, N1, NEnd).
 writeValid(NStart, NEnd):-
     penalti_aktif(wild_draw_four),
     !,
-    writeAction(can_tantang, tantang, NStart, N1),
-    writeAction(can_tantang, ambilKartu, N1, NEnd).
+    writeAction(can_tangkap, tangkap, NStart, N1),
+    writeAction(can_tantang, tantang, N1, N2),
+    writeAction(can_tantang, ambilKartu, N2, NEnd).
 writeValid(NStart, NEnd):-
     writeAction(can_uni, uni, NStart, N1),
     writeAction(can_tangkap, tangkap, N1, N2),
