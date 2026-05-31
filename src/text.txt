@@ -1,8 +1,8 @@
-urutan_pemain:[hugo,jovan].
-giliran:hugo.
-discard_top:hijau-9.
-warna_aktif:hijau.
+urutan_pemain:[arg,art].
+giliran:arg.
+discard_top:kuning-9.
+warna_aktif:kuning.
 arah_permainan:kanan.
 status_UNI:[].
-kartu(hugo):[biru-reverse,merah-2,merah-5,kuning-reverse,biru-draw_two,kuning-draw_two].
-kartu(jovan):[biru-6,hijau-2,biru-8,hijau-7,merah-0,biru-draw_two].
+kartu(arg):[kuning-8,hijau-7,kuning-reverse,biru-skip,hijau-draw_two,merah-3].
+kartu(art):[merah-7,biru-9,hijau-2,merah-5,hijau-draw_two,biru-4].

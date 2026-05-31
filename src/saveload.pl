@@ -67,6 +67,12 @@ kumpul_status_uni(List) :- findall(P, status_uni(P), List).
 arah_sekarang(Arah) :- (arah_permainan(Arah) -> true ; Arah = kanan).
 
 % 5. saveGame
+
+saveGame :-
+    final_score(_, _, _, _),
+    !,
+    write('Gagal menyimpan: Permainan sudah selesai!'), nl.
+
 saveGame :-
     \+ game_start,
     !,
@@ -85,7 +91,10 @@ saveGame :-
     open(NamaFileLengkap, write, Stream),
     saveGame_tulis(Stream),
     close(Stream),
-    format('Status permainan berhasil disimpan ke ~w.~n', [NamaFileLengkap]).
+    format('Status permainan berhasil disimpan ke ~w.~n', [NamaFileLengkap]),
+
+    bersihkan_state, 
+    write('Permainan selesai disimpan dan telah diakhiri. Silakan mulai ulang atau load game.'), nl.
 
 saveGame_tulis(Stream) :-
 
@@ -129,6 +138,11 @@ saveGame_tulis(Stream) :-
     /* 7. kartu tiap pemain */
     urutan_pemain(UrutanPemain),
     tulis_kartu_pemain(Stream, UrutanPemain).
+
+loadGame :-
+    game_start,
+    !,
+    write('Gagal memuat: loadGame hanya bisa dipanggil SEBELUM permainan dimulai!'), nl.
 
 loadGame :-
     write('Masukkan nama file yang akan dimuat: '),
