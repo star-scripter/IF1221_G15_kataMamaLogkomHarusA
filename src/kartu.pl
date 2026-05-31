@@ -35,7 +35,7 @@ kartu_valid(Warna, draw_two) :-
 
 acak_deck([], []) :- !.
 acak_deck(List, [Kartu|Acak]) :-
-    length(List, Len),
+    getLength(List, Len),
     random(0, Len, IndeksAcak),
     ambil_elemen(IndeksAcak, List, Kartu, SisaList),
     acak_deck(SisaList, Acak).
