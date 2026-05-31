@@ -18,6 +18,7 @@
 :- include('draw.pl').
 :- include('tangkap.pl').
 :- include('endgame_detection.pl').
+:- include('saveload.pl').
 
 startGame :-
     game_start,
