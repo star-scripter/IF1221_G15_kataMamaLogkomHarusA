@@ -13,6 +13,9 @@ ambilKartu :-
         (penalti_aktif(draw_two)->
         efek(kartu(_,draw_two))
         ;
+
+        cek_deck_habis,
+        
         retract(deck_utama([KartuDitarik|SisaDeck])),
         assertz(deck_utama(SisaDeck)),
         
