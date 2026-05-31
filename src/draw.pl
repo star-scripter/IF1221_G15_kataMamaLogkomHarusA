@@ -2,6 +2,7 @@
 :-include('utilities.pl').
 
 draw(Pemain):-
+    cek_deck_habis,
     retract(deck_utama([KartuDiambil|SisaDeck])),
     assertz(deck_utama(SisaDeck)),
     retract(tangan(Pemain, TanganLama)),

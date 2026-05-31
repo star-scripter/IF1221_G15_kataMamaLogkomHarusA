@@ -77,3 +77,21 @@ manualConcat([H|T], Separator, Result) :-
 
 ubah_ke_atom(Val, Atom) :-
     (number(Val) -> atom_number(Val, Atom) ; Atom = Val).
+
+cek_deck_habis :-
+    deck_utama([]), !,
+    buang_kartu([KartuAtas | SisaBuangan]),
+
+    (SisaBuangan == [] ->
+        write("Tidak ada kartu lagi yang dapat diacak!"), nl
+    ;
+        acak_deck(SisaBuangan, DeckBaru),
+        retractall(deck_utama(_)),
+        assertz(deck_utama(DeckBaru)),
+        retractall(buang_kartu(_)),
+        assertz(buang_kartu([KartuAtas])),
+        write("Deck utama sudah habis. Mengacak ulang tumpukan buangan menjadi deck baru.")
+
+    ).
+
+cek_deck_habis.
