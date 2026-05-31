@@ -197,7 +197,7 @@ proses_semua_baris([Baris|Rest]) :-
 proses_baris(urutan_pemain:Urutan) :-
     !,
     assertz(urutan_pemain(Urutan)),
-    getlength(Urutan, Num),
+    getLength(Urutan, Num),
     assertz(jumlah_pemain(Num)),
     assertz(nama_pemain(Urutan)).
 
